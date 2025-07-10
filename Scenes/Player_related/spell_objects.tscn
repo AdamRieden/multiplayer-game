@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7cyatal88ig"]
+
+[ext_resource type="Script" path="res://Scripts/Player_related/SpellObjects.gd" id="1_6nk6a"]
+
+[node name="SpellObjects" type="Node2D" groups=["SpellObjects"]]
+script = ExtResource("1_6nk6a")
+
+[node name="Spell1" type="Node2D" parent="."]
+
+[node name="Spell1Items" type="Node2D" parent="Spell1"]
+
+[node name="Spell2" type="Node2D" parent="."]
+
+[node name="Spell2Items" type="Node2D" parent="Spell2"]
+
+[node name="Spell3" type="Node2D" parent="."]
+
+[node name="Spell3Items" type="Node2D" parent="Spell3"]
+
+[node name="Spell4" type="Node2D" parent="."]
+
+[node name="Spell4Items" type="Node2D" parent="Spell4"]
+
+[node name="Spell5" type="Node2D" parent="."]
+
+[node name="Spell5Items" type="Node2D" parent="Spell5"]
+
+[node name="Spell6" type="Node2D" parent="."]
+
+[node name="Spell6Items" type="Node2D" parent="Spell6"]
+
+[node name="Spell7" type="Node2D" parent="."]
+
+[node name="Spell7Items" type="Node2D" parent="Spell7"]
+
+[node name="Spell8" type="Node2D" parent="."]
+
+[node name="Spell8Items" type="Node2D" parent="Spell8"]

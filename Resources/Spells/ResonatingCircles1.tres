@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SpellData" load_steps=3 format=3 uid="uid://dlqwebbklcxmc"]
+
+[ext_resource type="Script" path="res://Resources/Spells/Spell_Data.gd" id="1_ioiwn"]
+[ext_resource type="Texture2D" uid="uid://do4qd8od3ht7k" path="res://Assets/Spells/SpellIcons/ResonatingCirclesIcon.png" id="2_cftdl"]
+
+[resource]
+script = ExtResource("1_ioiwn")
+spell_name = "Resonating Circles"
+spell_level = 1
+attack = 3.0
+description = "Disks that seem oddly attracted to one another, but refuse to stay harmonious for long. Standing in their reverberations enchants the ears, while drives away foes."
+spell_texture = ExtResource("2_cftdl")
+spell_instantiation = "res://Scenes/Spells/Wind_sword.tscn"
+next_spell_resource = "res://Resources/Spells/ResonatingCircles1.tres"
+next_spell_instantiation = "res://Scenes/Spells/Wind_sword.tscn"

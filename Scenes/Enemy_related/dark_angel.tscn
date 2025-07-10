@@ -1,0 +1,209 @@
+[gd_scene load_steps=25 format=3 uid="uid://brmdjogce0b0r"]
+
+[ext_resource type="Script" path="res://Scripts/Enemy_related/dark_angel.gd" id="1_1sj8m"]
+[ext_resource type="Texture2D" uid="uid://1g8xp3g24g3k" path="res://Assets/Enemies/Dark Angel.png" id="1_2c6bq"]
+[ext_resource type="PackedScene" uid="uid://cyubxgmuguw4b" path="res://Scenes/Player_related/progress_bar.tscn" id="3_hwjc5"]
+[ext_resource type="Texture2D" uid="uid://r1aj7gdldb3c" path="res://Assets/Enemies/Dark Angel Spawn.png" id="4_2naei"]
+[ext_resource type="PackedScene" uid="uid://ba1di0u3tsq40" path="res://Scenes/World_related/spell_page.tscn" id="5_rh086"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_wi3de"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("HealthBar:value")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("AnimatedSprite2D:animation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("SpellPage:position")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("SpellPage:visible")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("SpellPage:monitorable")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("SpellPage:monitoring")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("AnimatedSprite2D:visible")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath("HealthBar:visible")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath("Killzone:monitorable")
+properties/9/spawn = true
+properties/9/replication_mode = 1
+properties/10/path = NodePath("Killzone:monitoring")
+properties/10/spawn = true
+properties/10/replication_mode = 1
+properties/11/path = NodePath("CollisionShapeDA:disabled")
+properties/11/spawn = true
+properties/11/replication_mode = 1
+properties/12/path = NodePath(".:scale")
+properties/12/spawn = true
+properties/12/replication_mode = 1
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ldkat"]
+radius = 15.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m5n5g"]
+atlas = ExtResource("1_2c6bq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vj43m"]
+atlas = ExtResource("1_2c6bq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_24h7g"]
+atlas = ExtResource("1_2c6bq")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8t8cd"]
+atlas = ExtResource("1_2c6bq")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lrwij"]
+atlas = ExtResource("1_2c6bq")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kmmyy"]
+atlas = ExtResource("1_2c6bq")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3bloa"]
+atlas = ExtResource("1_2c6bq")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xtm0s"]
+atlas = ExtResource("1_2c6bq")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8dyjv"]
+animations = [{
+"frames": [{
+"duration": 1.8,
+"texture": SubResource("AtlasTexture_m5n5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vj43m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_24h7g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8t8cd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lrwij")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kmmyy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3bloa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xtm0s")
+}],
+"loop": true,
+"name": &"default",
+"speed": 18.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0mqme"]
+radius = 13.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jcdg4"]
+atlas = ExtResource("4_2naei")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a5p33"]
+atlas = ExtResource("4_2naei")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xsmxh"]
+atlas = ExtResource("4_2naei")
+region = Rect2(0, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f7vir"]
+atlas = ExtResource("4_2naei")
+region = Rect2(64, 64, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxfl4"]
+atlas = ExtResource("4_2naei")
+region = Rect2(0, 128, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oyi72"]
+atlas = ExtResource("4_2naei")
+region = Rect2(64, 128, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ises2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jcdg4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a5p33")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xsmxh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f7vir")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxfl4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oyi72")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="Dark Angel" type="CharacterBody2D" groups=["Enemies"]]
+scale = Vector2(0.8, 0.8)
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_1sj8m")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_wi3de")
+
+[node name="CollisionShapeDA" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+shape = SubResource("CircleShape2D_ldkat")
+
+[node name="SpellPage" parent="." instance=ExtResource("5_rh086")]
+visible = false
+
+[node name="QueueFreeNodes" type="Node2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8dyjv")
+autoplay = "default"
+frame = 2
+frame_progress = 0.279723
+
+[node name="Killzone" type="Area2D" parent="."]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("CircleShape2D_0mqme")
+debug_color = Color(0.985675, 0, 0.331387, 0.42)
+
+[node name="HealthBar" parent="." instance=ExtResource("3_hwjc5")]
+offset_top = 16.0
+offset_bottom = 18.0
+
+[node name="SpawnAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -17)
+sprite_frames = SubResource("SpriteFrames_ises2")
+
+[connection signal="exp_obtained" from="SpellPage" to="." method="_on_spell_page_exp_obtained"]

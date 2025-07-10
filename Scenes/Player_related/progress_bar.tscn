@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyubxgmuguw4b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k8avp"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_up81c"]
+bg_color = Color(0.803922, 0, 0.105882, 1)
+
+[node name="ProgressBar" type="ProgressBar"]
+offset_left = -8.0
+offset_top = 8.0
+offset_right = 8.0
+offset_bottom = 10.0
+theme_override_styles/background = SubResource("StyleBoxFlat_k8avp")
+theme_override_styles/fill = SubResource("StyleBoxFlat_up81c")
+max_value = 50.0
+value = 50.0
+show_percentage = false

@@ -1,0 +1,56 @@
+[gd_scene load_steps=9 format=3 uid="uid://ba1di0u3tsq40"]
+
+[ext_resource type="Script" path="res://Scripts/World_related/SpellPage.gd" id="1_wf3g8"]
+[ext_resource type="Texture2D" uid="uid://ci8ply7biiw3f" path="res://Assets/World_drops/SpellPageAnimation.png" id="2_bt8bf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_17oqx"]
+atlas = ExtResource("2_bt8bf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x70d1"]
+atlas = ExtResource("2_bt8bf")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_31dhr"]
+atlas = ExtResource("2_bt8bf")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q1bxm"]
+atlas = ExtResource("2_bt8bf")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tvbm8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_17oqx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x70d1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_31dhr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q1bxm")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_83m1c"]
+radius = 7.0
+
+[node name="SpellPage" type="Area2D" groups=["SpellPage"]]
+collision_mask = 2
+script = ExtResource("1_wf3g8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_tvbm8")
+autoplay = "default"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_83m1c")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

@@ -1,0 +1,127 @@
+[gd_scene load_steps=18 format=3 uid="uid://droijoeieu0vl"]
+
+[ext_resource type="Texture2D" uid="uid://bx0qe42k84ofv" path="res://Assets/Angel/Angel_Down_New_Animation.png" id="1_idt4g"]
+[ext_resource type="Script" path="res://Scripts/Multiplayer/mulitplayer_player.gd" id="1_pg4lr"]
+[ext_resource type="Script" path="res://Scripts/Multiplayer/MultiplayerInput.gd" id="2_q2sbc"]
+[ext_resource type="PackedScene" uid="uid://ck42rhx0ofn68" path="res://Scenes/Spells/basic_auto_attack.tscn" id="4_fs34x"]
+[ext_resource type="PackedScene" uid="uid://bd5tbvrm6mjrs" path="res://Scenes/Player_related/spell_selection.tscn" id="5_2b4mu"]
+[ext_resource type="PackedScene" uid="uid://cyubxgmuguw4b" path="res://Scenes/Player_related/progress_bar.tscn" id="5_wdhbm"]
+[ext_resource type="PackedScene" uid="uid://bpgeiaq4r1x3a" path="res://Scenes/Player_related/spells_learned.tscn" id="6_65cnx"]
+[ext_resource type="PackedScene" uid="uid://b7cyatal88ig" path="res://Scenes/Player_related/spell_objects.tscn" id="7_xtdq4"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_6i3fy"]
+properties/0/path = NodePath(".:player_id")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("AnimatedSprite2D:animation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("HealthBar:value")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_0ej8h"]
+properties/0/path = NodePath("InputSynchronizer:input_direction")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ibjkn"]
+size = Vector2(8, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4r68"]
+atlas = ExtResource("1_idt4g")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fykl3"]
+atlas = ExtResource("1_idt4g")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8q3rh"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_i4r68")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_fykl3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ghmu0"]
+radius = 5.0
+height = 14.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_60nxc"]
+bg_color = Color(0.32549, 0.992157, 0.32549, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a4nr5"]
+size = Vector2(336, 262)
+
+[node name="mulitplayer_player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_pg4lr")
+
+[node name="PlayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_6i3fy")
+
+[node name="InputSynchronizer" type="MultiplayerSynchronizer" parent="."]
+unique_name_in_owner = true
+replication_config = SubResource("SceneReplicationConfig_0ej8h")
+script = ExtResource("2_q2sbc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ibjkn")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8q3rh")
+autoplay = "default"
+
+[node name="Killzone" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("CapsuleShape2D_ghmu0")
+debug_color = Color(0.866207, 0.326527, 0.373638, 0.42)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="BasicAutoAttack" parent="." node_paths=PackedStringArray("spawn_node") instance=ExtResource("4_fs34x")]
+unique_name_in_owner = true
+spawn_node = NodePath("../FeatherSpawnNode")
+
+[node name="FeatherSpawnNode" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="SpellSelection" parent="CanvasLayer" instance=ExtResource("5_2b4mu")]
+
+[node name="SpellsLearned" parent="CanvasLayer" instance=ExtResource("6_65cnx")]
+anchor_left = 0.744271
+anchor_top = 0.272222
+anchor_right = 0.874479
+anchor_bottom = 0.752778
+offset_top = 0.0
+offset_bottom = 0.0
+
+[node name="HealthBar" parent="." instance=ExtResource("5_wdhbm")]
+unique_name_in_owner = true
+theme_override_styles/fill = SubResource("StyleBoxFlat_60nxc")
+
+[node name="SpawnerArea" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpawnerArea"]
+shape = SubResource("RectangleShape2D_a4nr5")
+debug_color = Color(0.641149, 0.520854, 0.167788, 0.42)
+
+[node name="SpellObjects" parent="." instance=ExtResource("7_xtdq4")]

@@ -1,0 +1,356 @@
+[gd_scene load_steps=20 format=3 uid="uid://bd5tbvrm6mjrs"]
+
+[ext_resource type="Script" path="res://Scripts/Player_related/spell_selection.gd" id="1_ec1mf"]
+[ext_resource type="Texture2D" uid="uid://ggr82o7hqy6d" path="res://Assets/Spells/SpellRelatedStuff/BookTable.png" id="1_kewpb"]
+[ext_resource type="Texture2D" uid="uid://dnx1kivorbcta" path="res://Assets/Spells/SpellRelatedStuff/WindSwordBook.png" id="3_3ero7"]
+[ext_resource type="Texture2D" uid="uid://dh2upfh46d7qw" path="res://Assets/Spells/SpellRelatedStuff/ResonatingCirclesBook.png" id="4_hcvqw"]
+[ext_resource type="Texture2D" uid="uid://bimqlhwfiwvox" path="res://Assets/Spells/SpellRelatedStuff/SpartanHornBook.png" id="5_sd4rp"]
+[ext_resource type="Texture2D" uid="uid://q4tpo6lrpsvb" path="res://Assets/Spells/SpellRelatedStuff/ShieldsBook.png" id="6_442jm"]
+[ext_resource type="Texture2D" uid="uid://cgkds60y1xph6" path="res://Assets/Spells/SpellRelatedStuff/GorgonEyeBook.png" id="7_785df"]
+[ext_resource type="Texture2D" uid="uid://v4txq2wofmfn" path="res://Assets/Spells/SpellRelatedStuff/MoonBook.png" id="8_sfjhs"]
+[ext_resource type="Texture2D" uid="uid://dq6ttjwp2obxs" path="res://Assets/Spells/SpellRelatedStuff/SunPeopleBook.png" id="9_82cqs"]
+[ext_resource type="Texture2D" uid="uid://ldu0j0slh4e" path="res://Assets/Spells/SpellRelatedStuff/WatcherBook.png" id="10_cjbge"]
+[ext_resource type="Texture2D" uid="uid://ci1okovcd4kpw" path="res://Assets/Spells/SpellRelatedStuff/SpellBookPageTurning.png" id="11_cq74o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nq6c5"]
+atlas = ExtResource("11_cq74o")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xi0cj"]
+atlas = ExtResource("11_cq74o")
+region = Rect2(80, 0, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qua7v"]
+atlas = ExtResource("11_cq74o")
+region = Rect2(0, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0uib"]
+atlas = ExtResource("11_cq74o")
+region = Rect2(80, 80, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j8ecq"]
+atlas = ExtResource("11_cq74o")
+region = Rect2(0, 160, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7uspu"]
+atlas = ExtResource("11_cq74o")
+region = Rect2(80, 160, 80, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_esf8a"]
+atlas = ExtResource("11_cq74o")
+region = Rect2(0, 0, 80, 80)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v0f6g"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nq6c5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xi0cj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qua7v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0uib")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j8ecq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7uspu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_esf8a")
+}],
+"loop": false,
+"name": &"default",
+"speed": 12.0
+}]
+
+[node name="SpellSelection" type="Control" groups=["SpellSelection"]]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -1.0
+offset_right = -4.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ec1mf")
+metadata/_edit_lock_ = true
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_as_relative = false
+y_sort_enabled = true
+layout_mode = 0
+anchor_left = 0.021875
+anchor_top = 0.0851852
+anchor_right = 0.978125
+anchor_bottom = 0.935185
+offset_right = -1734.0
+offset_bottom = -867.0
+scale = Vector2(18, 18)
+texture = ExtResource("1_kewpb")
+expand_mode = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="Spell1" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.0567708
+anchor_top = 0.17963
+anchor_right = 0.133133
+anchor_bottom = 0.315684
+offset_right = -1.52588e-05
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Spell1"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0962378
+anchor_top = 0.0855457
+anchor_right = 0.88742
+anchor_bottom = 0.881795
+texture = ExtResource("3_3ero7")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Spell2" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0567708
+anchor_top = 0.352778
+anchor_right = 0.133133
+anchor_bottom = 0.488832
+offset_right = -1.52588e-05
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Spell2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0962378
+anchor_top = 0.0855457
+anchor_right = 0.88742
+anchor_bottom = 0.881795
+texture = ExtResource("4_hcvqw")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Spell3" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0567708
+anchor_top = 0.525926
+anchor_right = 0.133133
+anchor_bottom = 0.661981
+offset_right = -1.52588e-05
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Spell3"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0962378
+anchor_top = 0.0855457
+anchor_right = 0.88742
+anchor_bottom = 0.881795
+texture = ExtResource("5_sd4rp")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Spell4" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0567708
+anchor_top = 0.699074
+anchor_right = 0.133133
+anchor_bottom = 0.835129
+offset_right = -1.52588e-05
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Spell4"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0962378
+anchor_top = 0.0855457
+anchor_right = 0.88742
+anchor_bottom = 0.881795
+texture = ExtResource("6_442jm")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Spell5" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.155208
+anchor_top = 0.17963
+anchor_right = 0.231571
+anchor_bottom = 0.315684
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Spell5"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0962378
+anchor_top = 0.0855457
+anchor_right = 0.88742
+anchor_bottom = 0.881795
+texture = ExtResource("7_785df")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Spell6" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.155208
+anchor_top = 0.352778
+anchor_right = 0.231571
+anchor_bottom = 0.488832
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Spell6"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0962378
+anchor_top = 0.0855457
+anchor_right = 0.88742
+anchor_bottom = 0.881795
+texture = ExtResource("8_sfjhs")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Spell7" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.155208
+anchor_top = 0.525926
+anchor_right = 0.231571
+anchor_bottom = 0.661981
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Spell7"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0962378
+anchor_top = 0.0855457
+anchor_right = 0.88742
+anchor_bottom = 0.881795
+texture = ExtResource("9_82cqs")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="Spell8" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0567708
+anchor_top = 0.17963
+anchor_right = 0.133133
+anchor_bottom = 0.315684
+offset_left = 189.0
+offset_top = 561.0
+offset_right = 189.0
+offset_bottom = 561.0
+metadata/_edit_use_anchors_ = true
+
+[node name="TextureRect" type="TextureRect" parent="Spell8"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0962378
+anchor_top = 0.0855457
+anchor_right = 0.88742
+anchor_bottom = 0.881795
+texture = ExtResource("10_cjbge")
+expand_mode = 1
+stretch_mode = 5
+metadata/_edit_use_anchors_ = true
+
+[node name="SpellBook" type="AnimatedSprite2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(899, 556)
+scale = Vector2(12.45, 12.45)
+sprite_frames = SubResource("SpriteFrames_v0f6g")
+frame = 6
+frame_progress = 1.0
+
+[node name="SpellTextName" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.3
+anchor_top = 0.237037
+anchor_right = 0.45625
+anchor_bottom = 0.311111
+bbcode_enabled = true
+text = "Spell Name"
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="SpellBuffNerfText" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.308333
+anchor_top = 0.559259
+anchor_right = 0.444271
+anchor_bottom = 0.819444
+bbcode_enabled = true
+text = "Buffs
+
+Nerfs
+"
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="SpellRect" type="TextureRect" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+anchor_left = 0.311458
+anchor_top = 0.299074
+anchor_right = 0.442708
+anchor_bottom = 0.532407
+metadata/_edit_use_anchors_ = true
+
+[node name="SpellDescription" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.484896
+anchor_top = 0.191667
+anchor_right = 0.607813
+anchor_bottom = 0.832407
+bbcode_enabled = true
+text = "Spell Description
+"
+scroll_active = false
+metadata/_edit_use_anchors_ = true
+
+[node name="Confirm" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.106771
+anchor_top = 0.855556
+anchor_right = 0.182812
+anchor_bottom = 0.884259
+offset_bottom = -6.10352e-05
+text = "Confirm Selection"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="pressed" from="Confirm" to="." method="_on_confirm_pressed"]

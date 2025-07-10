@@ -1,0 +1,65 @@
+[gd_scene load_steps=9 format=3 uid="uid://b51wn1ulqn6h1"]
+
+[ext_resource type="Script" path="res://Scripts/Player_related/player.gd" id="1_2ghb4"]
+[ext_resource type="Texture2D" uid="uid://bx0qe42k84ofv" path="res://Assets/Angel/Angel_Down_New_Animation.png" id="1_kdcg2"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_lbptg"]
+properties/0/path = NodePath("..:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_55ec8"]
+size = Vector2(8, 14)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i4r68"]
+atlas = ExtResource("1_kdcg2")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fykl3"]
+atlas = ExtResource("1_kdcg2")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kjyj3"]
+animations = [{
+"frames": [{
+"duration": 2.0,
+"texture": SubResource("AtlasTexture_i4r68")
+}, {
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_fykl3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_wnvjg"]
+radius = 5.0
+height = 14.0
+
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_2ghb4")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+root_path = NodePath("../Camera2D")
+replication_config = SubResource("SceneReplicationConfig_lbptg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_55ec8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kjyj3")
+autoplay = "default"
+
+[node name="Killzone" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("CapsuleShape2D_wnvjg")
+debug_color = Color(0.866207, 0.326527, 0.373638, 0.42)
+
+[node name="Camera2D" type="Camera2D" parent="."]

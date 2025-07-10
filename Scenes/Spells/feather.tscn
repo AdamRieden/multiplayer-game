@@ -1,0 +1,48 @@
+[gd_scene load_steps=7 format=3 uid="uid://cmmcskbwudaet"]
+
+[ext_resource type="Texture2D" uid="uid://cdv5i5kiu6qu0" path="res://Assets/Spells/Feather.png" id="1_7ypyg"]
+[ext_resource type="Script" path="res://Scripts/Spell_related/Spell_scripts/feather.gd" id="1_u3l06"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ibs0l"]
+atlas = ExtResource("1_7ypyg")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_32wm2"]
+atlas = ExtResource("1_7ypyg")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5qkwl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ibs0l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_32wm2")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mq4fq"]
+size = Vector2(20, 15)
+
+[node name="Feather" type="Area2D"]
+top_level = true
+collision_layer = 8
+collision_mask = 5
+script = ExtResource("1_u3l06")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+rotation = -2.35619
+sprite_frames = SubResource("SpriteFrames_5qkwl")
+autoplay = "default"
+frame = 1
+frame_progress = 0.863297
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(15, 0.5)
+shape = SubResource("RectangleShape2D_mq4fq")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
