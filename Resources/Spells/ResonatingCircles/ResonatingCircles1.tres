@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ResonatingCircles" load_steps=3 format=3 uid="uid://ba1qo8wy883y7"]
+
+[ext_resource type="Script" path="res://Resources/Spells/ResonatingCircles/ResonatingCircles.gd" id="1_oqvt2"]
+[ext_resource type="Texture2D" uid="uid://do4qd8od3ht7k" path="res://Assets/Spells/SpellIcons/ResonatingCirclesIcon.png" id="2_cftdl"]
+
+[resource]
+script = ExtResource("1_oqvt2")
+attack = 5.0
+speed = 20.0
+spell_name = "Resonating Circles"
+spell_level = 1
+description = "Disks that seem oddly attracted to one another, but refuse to stay harmonious for long. Standing in their reverberations enchants the ears, while drives away foes."
+spell_texture = ExtResource("2_cftdl")
+next_spell_resource = "res://Resources/Spells/ResonatingCircles/ResonatingCircles2.tres"
+buffnerf_text = "
+"

@@ -2,12 +2,13 @@ extends CharacterBody2D
 
 #signal health_depleted
 
-
 @export var SPEED = 55
 @export var player_id := 1:
 	set(id):
 		player_id = id
 		%InputSynchronizer.set_multiplayer_authority(id)
+
+@export var leveled_up = false
 #MUST CHANGE THE VALUES IN THE PROGRESS BAR INSPECTOR TO ACTUALLY SEE CHANGE IN HEALTH MAX AND HEALTH VALUE
 var max_stat = 1#4
 var stat_value = 1
@@ -22,19 +23,20 @@ var game
 func _ready():
 	if multiplayer.get_unique_id() == player_id:
 		$Camera2D.make_current()
-		$Camera2D.zoom = Vector2(3.5, 3.5)	
+		$Camera2D.zoom = Vector2(3.5, 3.5)
 	else:
 		$Camera2D.enabled = false
 	game = get_tree().get_nodes_in_group("Game")[0]
 	game.update()
 	game.rpc("rpc_register_player")
-
+	$SpellObjects.player_id = player_id
+	$CanvasLayer/SpellSelection.player_id = player_id
 	%HealthBar.max_value = player_stats["max_health"]
 	%HealthBar.value = player_stats["health"]
 	#%StatLevelUpBar.max_value = max_stat
 	#%StatLevelUpBar.value = 0
 	
-	# get the input direction and handle the movement/deceleration.
+# get the input direction and handle the movement/deceleration.
 func get_input():
 	input_direction = %InputSynchronizer.input_direction
 	velocity = input_direction * SPEED

@@ -1,14 +1,14 @@
 extends Area2D
 
 @export var SpellResource: Resource
+var player
 
 var target_enemy
 var target
 
+
 func _ready():
 	self.rotation = deg_to_rad(90)
-	print("INStatniate")
-	print(self.get_path())
 
 func _physics_process(_delta):
 	var enemies_in_range = %HitboxArea.get_overlapping_bodies()
@@ -21,7 +21,8 @@ func _physics_process(_delta):
 		if target != null && target.has_method("take_damage") && %Hurtbox.disabled == false:
 			for enemy in enemies_in_hurtbox:
 				if enemy != null:
-					enemy.take_damage(SpellResource.attack, .1, 1)
+					#enemy.take_damage(SpellResource.attack, .1, 1)
+					pass
 					
 	#rotates object to be 90 degrees idling
 	if enemies_in_range.size() <= 0 && $AnimationPlayer.is_playing() == false:

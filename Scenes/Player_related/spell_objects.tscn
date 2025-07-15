@@ -5,6 +5,10 @@
 [node name="SpellObjects" type="Node2D" groups=["SpellObjects"]]
 script = ExtResource("1_6nk6a")
 
+[node name="SpellSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Scenes/Spells/Wind_sword.tscn", "res://Scenes/Spells/resonating_circles.tscn")
+spawn_path = NodePath("..")
+
 [node name="Spell1" type="Node2D" parent="."]
 
 [node name="Spell1Items" type="Node2D" parent="Spell1"]

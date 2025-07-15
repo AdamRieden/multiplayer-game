@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="WindSword" load_steps=3 format=3 uid="uid://dtsrrfdbae7aa"]
+
+[ext_resource type="Script" path="res://Resources/Spells/WindSword/WindSword.gd" id="1_jjomm"]
+[ext_resource type="Texture2D" uid="uid://csbffw0jkh2tw" path="res://Assets/Spells/SpellIcons/Wind Sword Single.png" id="2_lt3nh"]
+
+[resource]
+script = ExtResource("1_jjomm")
+attack = 1.0
+spell_name = "Wind Sword"
+spell_level = 1
+description = "A Sword that silently ends its foes without leaving any trace that a cut was ever made."
+spell_texture = ExtResource("2_lt3nh")
+next_spell_resource = "res://Resources/Spells/WindSword/WindSword1.tres"
+buffnerf_text = "Buffs: Attack Increases
+"

@@ -1,0 +1,74 @@
+[gd_scene load_steps=7 format=3 uid="uid://bpgyfbol5rvmj"]
+
+[ext_resource type="Script" path="res://Scripts/Spell_related/Spell_scripts/resonating_circles.gd" id="1_37ex2"]
+[ext_resource type="Texture2D" uid="uid://c21wmqe7r3dda" path="res://Assets/Spells/ResonatingCircles/Ved and neur Circle.png" id="1_pvxcn"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6w6g7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_sl61r"]
+radius = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_6lfyb"]
+radius = 1.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l17t3"]
+
+[node name="ResonatingCircles" type="Node2D" node_paths=PackedStringArray("spawn_location")]
+script = ExtResource("1_37ex2")
+spawn_location = NodePath("GreenPivot/ShockwaveMarker")
+
+[node name="BluePivot" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="BlueHitBox" type="Area2D" parent="BluePivot"]
+
+[node name="Sprite2D" type="Sprite2D" parent="BluePivot/BlueHitBox"]
+position = Vector2(-50, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_pvxcn")
+hframes = 2
+vframes = 2
+frame = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BluePivot/BlueHitBox"]
+position = Vector2(-50, 0)
+shape = SubResource("CircleShape2D_6w6g7")
+
+[node name="ShockwaveCreatorBlue" type="Area2D" parent="BluePivot"]
+position = Vector2(-50, 0)
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BluePivot/ShockwaveCreatorBlue"]
+shape = SubResource("CircleShape2D_sl61r")
+debug_color = Color(0.894151, 0.299311, 0.303346, 0.42)
+
+[node name="GreenPivot" type="Marker2D" parent="."]
+unique_name_in_owner = true
+
+[node name="ShockwaveMarker" type="Marker2D" parent="GreenPivot"]
+position = Vector2(50, 0)
+gizmo_extents = 0.0
+
+[node name="ShockwaveCreatorGreen" type="Area2D" parent="GreenPivot/ShockwaveMarker"]
+collision_layer = 256
+collision_mask = 256
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GreenPivot/ShockwaveMarker/ShockwaveCreatorGreen"]
+shape = SubResource("CircleShape2D_6lfyb")
+debug_color = Color(0.95372, 0.143124, 0.412482, 0.42)
+
+[node name="Area2D" type="Area2D" parent="GreenPivot"]
+
+[node name="Sprite2D" type="Sprite2D" parent="GreenPivot/Area2D"]
+position = Vector2(50, 0)
+scale = Vector2(0.3, 0.3)
+texture = ExtResource("1_pvxcn")
+hframes = 2
+vframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GreenPivot/Area2D"]
+position = Vector2(50, 0)
+shape = SubResource("CircleShape2D_l17t3")
+
+[connection signal="area_entered" from="GreenPivot/ShockwaveMarker/ShockwaveCreatorGreen" to="." method="_on_shockwave_creator_green_area_entered"]

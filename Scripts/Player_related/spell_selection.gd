@@ -1,23 +1,12 @@
 extends Control
 
-
-var spells_to_load := [
-	"res://Resources/Spells/WindSword1.tres",
-	"res://Resources/Spells/ResonatingCircles1.tres",
-	"res://Resources/Spells/SpartanHorn1.tres"#,
-	#"res://Resources/Spells/PrototypeShield1.tres",
-	#"res://Resources/Spells/EyeOfGorgon1.tres",
-	#"res://Resources/Spells/MoonFriend1.tres",
-	#"res://Resources/Spells/PowerOfTheSunPeople1.tres",
-	#"res://Resources/Spells/Watcher1.tres"
-]
+@export var player_id : int
 
 var spell_click_monitor = [null, null]
 var confirm_click_monitor = false
 var current_spell_res = null
 var selected_spell = null
 var selected_spell_level = null
-var spell_confirmed = false
 var spell_texture_box
 
 var game
@@ -39,6 +28,8 @@ func _ready():
 	rpc_hide_spell_ui()
 	load_firstlevel_spells()
 	spell_texture_box = self.get_node("SpellRect") as TextureRect
+	player_id = multiplayer.get_unique_id()
+
 
 @rpc("any_peer", "call_local")
 func rpc_show_spell_ui():
@@ -80,26 +71,17 @@ func move_learned_spells_next_to_edge():
 	
 # ----------------------ALL SPELL RELATED FUNCTIONS----------------------
 func load_firstlevel_spells():
-	for i in spells_to_load.size():
+	for i in range(0,7):
 		# loading spell resource
-		var spell_loader = load(spells_to_load[i])
-		
-		#OUTDATED, JUST ADDED THE IMAGE INTO THE TEXTURE
-		## setting up the spell book texture
-		#var spell_texture = self.get_child(i+1).get_child(0) as TextureRect
-		#spell_texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-		#spell_texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-		#spell_texture.texture = spell_loader.spell_book_texture
-		
-		connect_spell_buttons(i, spell_loader)
+		connect_spell_buttons(i)
 
-func connect_spell_buttons(i: int, spell_resource: Resource):
+func connect_spell_buttons(i: int):#, spell_resource: Resource):
 	if i == 0:
-		%Spell1.pressed.connect(spell1.bind(spell_resource))
+		%Spell1.pressed.connect(spell1.bind(load(SpellDictionary.spell_library["Wind Sword"][1])))
 	if i == 1:
-		%Spell2.pressed.connect(spell2.bind(spell_resource))
-	if i == 2:
-		%Spell3.pressed.connect(spell3.bind(spell_resource))
+		%Spell2.pressed.connect(spell2.bind(load(SpellDictionary.spell_library["Resonating Circles"][1])))
+	#if i == 2:
+		#%Spell3.pressed.connect(spell3.bind(spell_resource))
 	#if i == 3:
 		#%Spell4.pressed.connect(spell4.bind(spell_resource))
 	#if i == 4:
@@ -112,191 +94,123 @@ func connect_spell_buttons(i: int, spell_resource: Resource):
 		#%Spell8.pressed.connect(spell8.bind(spell_resource))
 
 
-func load_first_spell(spell_resource: Resource, i: int):
-	var instantiate = load(spell_resource.spell_instantiation)
-	var new_spell = instantiate.instantiate()
-	new_spell.SpellResource = spell_resource
-	spells_learned.find_open_spellslot(new_spell.SpellResource, i)
-	spellobjects.get_child(i-1).add_child(new_spell)
-	#load_next_spell_resource_icon_for_book(new_spell.SpellResource.next_spell_resource, button_name)
-	
-func load_next_leveled_spell(button_name, i: int):
-	var delete_node = spellobjects.get_child(i-1).get_child(1)
-
-	var instantiate = load(delete_node.SpellResource.next_spell_instantiation)
-	var new_spell = instantiate.instantiate()
-	
-	new_spell.SpellResource = ResourceLoader.load(delete_node.SpellResource.next_spell_resource)
-	spells_learned.find_open_spellslot(new_spell.SpellResource, i)
-	
-	spellobjects.get_child(i-1).remove_child(delete_node)
-	spellobjects.get_child(i-1).add_child(new_spell)
-	spellobjects.update_items_for_spells(i-1)
-	#if new_spell.SpellResource.next_spell_resource != "null":
-		#load_next_spell_resource_icon_for_book(new_spell.SpellResource.next_spell_resource, button_name)
-	#else:
-		#button_name.disabled = true
-	if new_spell.SpellResource.next_spell_resource == "null":
-		button_name.disabled = true
-
-
-#OUTDATED BUT CAN BE USEFUL TO LOOK AT FOR GUIDANCE
-#func load_next_spell_resource_icon_for_book(next_spell: String, button_name):
-	#var spell = load(next_spell)
-	## if the texture of the actual spell changes for the book
-	#var spell_texture = button_name.get_child(0) as TextureRect
-	#spell_texture.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
-	#spell_texture.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	#spell_texture.texture = spell.spell_texture
-
-	
-func load_spell_content_on_book(spell_resource: Resource, i: int):
-	var next_spell
-	
+func load_spell_content_on_book(spell_resource: Resource):
 	spell_texture_box.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	spell_texture_box.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
 	
-	# if this isn't a new spell, can load and use data of the next spell in line
-	if spellobjects.get_child(i-1).get_child_count() > 1:
-		next_spell = load(spellobjects.get_child(i-1).get_child(1).SpellResource.next_spell_resource)
-
 	# the first click, so technically this should not turn the page
 	if spell_click_monitor[0] == null:
-		# basically if its the first spell so only the resource is available
-		if next_spell == null:
-			which_spell_resource_to_load_for_book(spell_texture_box, spell_resource)
-		else:
-			which_spell_resource_to_load_for_book(spell_texture_box, next_spell)
+		which_spell_resource_to_load_for_book(spell_texture_box, spell_resource)
 
 	else:
-		# resets all changing icon and texts to look like the page was turned
-		reset_book()
-		%SpellBook.play("default")
-		await %SpellBook.animation_finished
-		if next_spell == null:
+		# if the user clicks on the same spell, doesn't cause the book to flip to the same page
+		if spell_click_monitor[0] != spell_click_monitor[1]:
+			# resets all changing icon and texts to look like the page was turned
+			reset_book()
+			%SpellBook.play("default")
+			await %SpellBook.animation_finished
 			which_spell_resource_to_load_for_book(spell_texture_box, spell_resource)
-		else:
-			which_spell_resource_to_load_for_book(spell_texture_box, next_spell)
+
 
 
 func which_spell_resource_to_load_for_book(texture_box, spell):
 	%SpellTextName.text = "[center]%s[/center]" % spell.spell_name
 	%SpellDescription.text = "[center]%s[/center]" % spell.description
+	%SpellBuffText.text = "[center]%s[/center]" % SpellDictionary.spell_buff_texts[spell.spell_name]
 	texture_box.texture = spell.spell_texture
 	
 func reset_book():
-	%SpellBuffNerfText.text = ""
+	%SpellBuffText.text = ""
 	%SpellTextName.text = ""
 	%SpellDescription.text = ""
 	spell_texture_box.texture = null
 	
 # ----------------- Spell Buttons ----------------- #
 func spell1(spell_resource: Resource):
-	one_click_spell("Spell1", spell_resource)
-	load_spell_content_on_book(spell_resource, 1)
-
+	one_click_spell("Wind Sword", spell_resource)
+	load_spell_content_on_book(spell_resource)
 
 
 func spell2(spell_resource: Resource):
-	one_click_spell("Spell2", spell_resource)
-	load_spell_content_on_book(spell_resource, 2)
+	one_click_spell("Resonating Circles", spell_resource)
+	load_spell_content_on_book(spell_resource)
 
 
-		
 func spell3(spell_resource: Resource):
-	one_click_spell("Spell3", spell_resource)
-	load_spell_content_on_book(spell_resource, 3)
+	one_click_spell("Spartan Horn", spell_resource)
+	load_spell_content_on_book(spell_resource)
 
 
 func spell4(spell_resource: Resource):
 	one_click_spell("Spell4", spell_resource)
-	load_spell_content_on_book(spell_resource, 4)
+	load_spell_content_on_book(spell_resource)
 
 
 func spell5(spell_resource: Resource):
 	one_click_spell("Spell5", spell_resource)
-	load_spell_content_on_book(spell_resource, 5)
+	load_spell_content_on_book(spell_resource)
 
 
 func spell6(spell_resource: Resource):
 	one_click_spell("Spell6", spell_resource)
-	load_spell_content_on_book(spell_resource, 6)
+	load_spell_content_on_book(spell_resource)
 
 		
 func spell7(spell_resource: Resource):
 	one_click_spell("Spell7", spell_resource)
-	load_spell_content_on_book(spell_resource, 7)
+	load_spell_content_on_book(spell_resource)
 
 		
 func spell8(spell_resource: Resource):
 	one_click_spell("Spell8", spell_resource)
-	load_spell_content_on_book(spell_resource, 8)
-
-
-@rpc("any_peer", "call_local")
-func spellNumberSelected(SpellString: String):
-	var spellNumberChar = int(SpellString.trim_prefix("spell"))
+	load_spell_content_on_book(spell_resource)
 	
-	# if spell # has not been added yet
-	if spellobjects.get_child(spellNumberChar - 1).get_child_count() == 1:
-		load_first_spell(current_spell_res, spellNumberChar)
-		
-	# if spell # has already been chosen
-	else:
-		load_next_leveled_spell(get_node(SpellString), spellNumberChar)
-		
-	reset_clicks()
-	
+
+# When confirm button is pressed, calls rpc function to let all other clients know a player is ready.
+# Rejects when a spell is not selected 
 func _on_confirm_pressed():
 	if spell_click_monitor[1] != null:
-		rpc("rpc_spell_selected", spell_click_monitor[1])
-		#rpc_id(multiplayer.get_unique_id(), "rpc_spell_selected", spell_click_monitor[1])
-
+		rpc("rpc_spell_selected", selected_spell, selected_spell_level)
+		disableenable_buttons(true)
 	else:
 		print("No spell selected")
 	
-	
+
+# Checks if the spell is valid, then calls the game to confirm what spell the player has selected and the level of the spell
 @rpc("any_peer", "call_local")
-func rpc_spell_selected(selected_spell_string: String):
+func rpc_spell_selected(selected_spell_string: String, spell_level: int):
 	if selected_spell_string == null or selected_spell_string == "":
 		print("Please select a spell, then click confirm")
-		spell_confirmed = false
 	else:
-		var player_id = multiplayer.get_unique_id()
-		#print("Player ", player_id, " selected ", selected_spell, " at level ", selected_spell_level)
-		
-		
-		game.spell_confirmation(player_id, selected_spell, selected_spell_level)
-		spell_confirmed = true
+		var sender_id = multiplayer.get_remote_sender_id()
+		game.store_spell_choice(sender_id, selected_spell_string, spell_level)
 
-
-func set_up_spell():
-	if spell_confirmed == true:
-		disable_buttons()
-		spellNumberSelected(spell_click_monitor[1]) 
-
+# Tracks multiple variables of the selected spell resource for uses in other functions
+# as well as tracks the different clicks of the spells
 func one_click_spell(spell: String, spell_resource: Resource):
 	current_spell_res = spell_resource
 	selected_spell = current_spell_res.spell_name
 	selected_spell_level = current_spell_res.spell_level
-		
-	print("CURRENT SPELL RESOURCE ",current_spell_res, " selected_spell RAWWW, ", selected_spell)
-	print(spell)
+
 	var temp = spell_click_monitor[1]
 	spell_click_monitor[1] = spell
 	spell_click_monitor[0] = temp
 	
-func reset_clicks():
+# resets the spell click monitor and confirm button click
+@rpc("any_peer", "call_local")
+func rpc_reset_clicks():
 	spell_click_monitor = [null,null]
 	confirm_click_monitor = false
+	disableenable_buttons(false)
 	
-func disable_buttons():
-	%Spell1.disabled = true
-	%Spell2.disabled = true
-	%Spell3.disabled = true
-	%Spell4.disabled = true
-	%Spell5.disabled = true
-	%Spell6.disabled = true
-	%Spell7.disabled = true
-	%Spell8.disabled = true
-	%Confirm.disabled = true
+# disables all buttons
+func disableenable_buttons(boolean):
+	%Spell1.disabled = boolean
+	%Spell2.disabled = boolean
+	%Spell3.disabled = boolean
+	%Spell4.disabled = boolean
+	%Spell5.disabled = boolean
+	%Spell6.disabled = boolean
+	%Spell7.disabled = boolean
+	%Spell8.disabled = boolean
+	%Confirm.disabled = boolean

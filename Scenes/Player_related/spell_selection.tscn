@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://bd5tbvrm6mjrs"]
+[gd_scene load_steps=21 format=3 uid="uid://bd5tbvrm6mjrs"]
 
 [ext_resource type="Script" path="res://Scripts/Player_related/spell_selection.gd" id="1_ec1mf"]
 [ext_resource type="Texture2D" uid="uid://ggr82o7hqy6d" path="res://Assets/Spells/SpellRelatedStuff/BookTable.png" id="1_kewpb"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://dq6ttjwp2obxs" path="res://Assets/Spells/SpellRelatedStuff/SunPeopleBook.png" id="9_82cqs"]
 [ext_resource type="Texture2D" uid="uid://ldu0j0slh4e" path="res://Assets/Spells/SpellRelatedStuff/WatcherBook.png" id="10_cjbge"]
 [ext_resource type="Texture2D" uid="uid://ci1okovcd4kpw" path="res://Assets/Spells/SpellRelatedStuff/SpellBookPageTurning.png" id="11_cq74o"]
+[ext_resource type="FontFile" uid="uid://bbfe8b7f8rpcg" path="res://Assets/Fonts/m5x7.ttf" id="12_t4rc2"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nq6c5"]
 atlas = ExtResource("11_cq74o")
@@ -87,7 +88,8 @@ metadata/_edit_lock_ = true
 [node name="TextureRect" type="TextureRect" parent="."]
 z_as_relative = false
 y_sort_enabled = true
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.021875
 anchor_top = 0.0851852
 anchor_right = 0.978125
@@ -292,30 +294,39 @@ frame_progress = 1.0
 
 [node name="SpellTextName" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
-layout_mode = 0
-anchor_left = 0.3
-anchor_top = 0.237037
-anchor_right = 0.45625
-anchor_bottom = 0.311111
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.300521
+anchor_top = 0.206481
+anchor_right = 0.456771
+anchor_bottom = 0.280555
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("12_t4rc2")
+theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
 text = "Spell Name"
 scroll_active = false
 metadata/_edit_use_anchors_ = true
 
-[node name="SpellBuffNerfText" type="RichTextLabel" parent="."]
+[node name="SpellBuffText" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.308333
-anchor_top = 0.559259
-anchor_right = 0.444271
+anchor_left = 0.3
+anchor_top = 0.553704
+anchor_right = 0.458333
 anchor_bottom = 0.819444
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("12_t4rc2")
+theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
 text = "Buffs
 
 Nerfs
 "
+fit_content = true
 scroll_active = false
+tab_size = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="SpellRect" type="TextureRect" parent="."]
@@ -331,10 +342,13 @@ metadata/_edit_use_anchors_ = true
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.484896
-anchor_top = 0.191667
+anchor_left = 0.481771
+anchor_top = 0.202778
 anchor_right = 0.607813
-anchor_bottom = 0.832407
+anchor_bottom = 0.8
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("12_t4rc2")
+theme_override_font_sizes/normal_font_size = 35
 bbcode_enabled = true
 text = "Spell Description
 "
