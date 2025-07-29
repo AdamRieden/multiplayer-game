@@ -35,6 +35,7 @@ func _ready():
 	%HealthBar.value = player_stats["health"]
 	#%StatLevelUpBar.max_value = max_stat
 	#%StatLevelUpBar.value = 0
+	$Label.text = str(player_id)
 	
 # get the input direction and handle the movement/deceleration.
 func get_input():

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="SpartanHorn" load_steps=3 format=3 uid="uid://c1w7h6iftvhcm"]
+
+[ext_resource type="Script" path="res://Resources/Spells/SpartanHorn/SpartanHornBase.gd" id="1_4yfj4"]
+[ext_resource type="Texture2D" uid="uid://d1581o12irre4" path="res://Assets/Spells/SpellIcons/horn_picture.png" id="2_t3vdm"]
+
+[resource]
+script = ExtResource("1_4yfj4")
+attack = 0.05
+cooldown = 10.0
+duration = 2.0
+spell_name = "Spartan Horn"
+spell_level = 1
+description = "Made from the most reliable brass from that era, still mustering up an army of soldiers that have valiantly died in battle."
+spell_texture = ExtResource("2_t3vdm")
+next_spell_resource = "res://Resources/Spells/SpartanHorn/SpartanHorn2.tres"

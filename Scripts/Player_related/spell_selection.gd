@@ -6,12 +6,10 @@ var spell_click_monitor = [null, null]
 var confirm_click_monitor = false
 var current_spell_res = null
 var selected_spell = null
-var selected_spell_level = null
 var spell_texture_box
 
 var game
 var player
-var spellobjects
 var profile
 var spells_learned 
 
@@ -21,7 +19,6 @@ var learned_spell_dims_idle := {"position": Vector2(10, 260), "columns": 2, "h_s
 func _ready():
 	player = get_parent().get_parent()
 	game = get_tree().get_nodes_in_group("Game")[0]
-	spellobjects = player.get_node("SpellObjects")
 #	profile = get_tree().get_nodes_in_group("Profile")[0]
 	spells_learned = player.get_node("CanvasLayer/SpellsLearned")
 	move_learned_spells_next_to_edge()
@@ -33,6 +30,7 @@ func _ready():
 
 @rpc("any_peer", "call_local")
 func rpc_show_spell_ui():
+	%Confirm.disabled = false
 	self.visible = true
 	
 @rpc("any_peer", "call_local")
@@ -48,6 +46,7 @@ func leveled_up():
 	reset_book()
 	move_learned_spells_next_to_book()
 	rpc_show_spell_ui()
+	disableenable_buttons(false)
 	#profile._show()
 	
 func move_learned_spells_next_to_book():
@@ -77,11 +76,11 @@ func load_firstlevel_spells():
 
 func connect_spell_buttons(i: int):#, spell_resource: Resource):
 	if i == 0:
-		%Spell1.pressed.connect(spell1.bind(load(SpellDictionary.spell_library["Wind Sword"][1])))
+		%Spell1.pressed.connect(spell1.bind(load(SpellDictionary.spell_library["Wind Sword"]["Base"])))
 	if i == 1:
-		%Spell2.pressed.connect(spell2.bind(load(SpellDictionary.spell_library["Resonating Circles"][1])))
-	#if i == 2:
-		#%Spell3.pressed.connect(spell3.bind(spell_resource))
+		%Spell2.pressed.connect(spell2.bind(load(SpellDictionary.spell_library["Resonating Circles"]["Base"])))
+	if i == 2:
+		%Spell3.pressed.connect(spell3.bind(load(SpellDictionary.spell_library["Spartan Horn"]["Base"])))
 	#if i == 3:
 		#%Spell4.pressed.connect(spell4.bind(spell_resource))
 	#if i == 4:
@@ -170,7 +169,7 @@ func spell8(spell_resource: Resource):
 # Rejects when a spell is not selected 
 func _on_confirm_pressed():
 	if spell_click_monitor[1] != null:
-		rpc("rpc_spell_selected", selected_spell, selected_spell_level)
+		rpc("rpc_spell_selected", selected_spell)
 		disableenable_buttons(true)
 	else:
 		print("No spell selected")
@@ -178,20 +177,19 @@ func _on_confirm_pressed():
 
 # Checks if the spell is valid, then calls the game to confirm what spell the player has selected and the level of the spell
 @rpc("any_peer", "call_local")
-func rpc_spell_selected(selected_spell_string: String, spell_level: int):
+func rpc_spell_selected(selected_spell_string: String):
 	if selected_spell_string == null or selected_spell_string == "":
 		print("Please select a spell, then click confirm")
 	else:
 		var sender_id = multiplayer.get_remote_sender_id()
-		game.store_spell_choice(sender_id, selected_spell_string, spell_level)
+		game.store_spell_choice(sender_id, selected_spell_string)
 
 # Tracks multiple variables of the selected spell resource for uses in other functions
 # as well as tracks the different clicks of the spells
 func one_click_spell(spell: String, spell_resource: Resource):
 	current_spell_res = spell_resource
 	selected_spell = current_spell_res.spell_name
-	selected_spell_level = current_spell_res.spell_level
-
+	
 	var temp = spell_click_monitor[1]
 	spell_click_monitor[1] = spell
 	spell_click_monitor[0] = temp
@@ -201,9 +199,8 @@ func one_click_spell(spell: String, spell_resource: Resource):
 func rpc_reset_clicks():
 	spell_click_monitor = [null,null]
 	confirm_click_monitor = false
-	disableenable_buttons(false)
 	
-# disables all buttons
+# disables or enables all buttons with whatever boolean is passed
 func disableenable_buttons(boolean):
 	%Spell1.disabled = boolean
 	%Spell2.disabled = boolean

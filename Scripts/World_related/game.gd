@@ -8,7 +8,7 @@ var Level
 
 @export var spell_confirmation_count = 0
 @export var player_count = 0
-var selected_spells := {}  # Dictionary of player_id -> {spell: String, level: int}
+var selected_spells := {}  # Dictionary of player_id -> {spell: String}
 var spellselection_dict := {}
 var spellobjects_dict := {}
 
@@ -50,9 +50,9 @@ func update():
 		spellselection_dict[$PlayerSpawnNode.get_child(child).player_id] = get_tree().get_nodes_in_group("SpellSelection")[child]
 		spellobjects_dict[$PlayerSpawnNode.get_child(child).player_id] = get_tree().get_nodes_in_group("SpellObjects")
 		
-func store_spell_choice(player_id: int, spell: String, level: int):
-	selected_spells[player_id] = { "spell": spell, "level": level }
-	#print(player_id, " ", spell, " ", level)
+func store_spell_choice(player_id: int, spell: String):
+	selected_spells[player_id] = { "spell": spell}
+	#print(player_id, " ", spell)
 	spell_confirmation_count += 1
 	#print("Current count: ", spell_confirmation_count, "/", player_count)
 	for players in selected_spells:
@@ -60,7 +60,7 @@ func store_spell_choice(player_id: int, spell: String, level: int):
 		var new_path_for_player = path_for_players + str(players)
 		var spellobjects_node = get_node(new_path_for_player + "/SpellObjects")
 		if get_node(new_path_for_player).leveled_up != true:
-			spellobjects_node.find_what_spell_to_spawn(spell, level)
+			spellobjects_node.find_what_spell_to_spawn(spell)
 			get_node(new_path_for_player).leveled_up = true
 
 	if spell_confirmation_count == player_count:

@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="SpartanHornRaw" load_steps=2 format=3 uid="uid://cxkv1p5rfeek7"]
+
+[ext_resource type="Script" path="res://Resources/Spells/SpartanHorn/SpartanHornRaw.gd" id="1_05s6h"]
+
+[resource]
+script = ExtResource("1_05s6h")
+attack = 0.05
+cooldown = 10.0
+duration = 2.0

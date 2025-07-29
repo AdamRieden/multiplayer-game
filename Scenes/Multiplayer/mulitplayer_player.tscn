@@ -128,3 +128,9 @@ shape = SubResource("RectangleShape2D_a4nr5")
 debug_color = Color(0.641149, 0.520854, 0.167788, 0.42)
 
 [node name="SpellObjects" parent="." instance=ExtResource("7_xtdq4")]
+
+[node name="Label" type="Label" parent="."]
+offset_left = -19.0
+offset_top = -36.0
+offset_right = 21.0
+offset_bottom = -13.0

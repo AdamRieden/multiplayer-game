@@ -15,3 +15,10 @@ The spells level up as well, where their stats are increased each time a spell a
 the addition of up to 6 more spells for the player to choose from, but I guess I'll see if any logic breaks when adding more.
 
 I am now trying to implement all other spells, which there are 6, and adding their resources and other necessary components for that to work. 
+
+7/29/2025
+A little bit of a hiatus from adding new features, but I have edited how the leveling system will work. Instead of set amount of levels a spell can level up to,
+all spells scale infinitely each time they are choosen. This leveling system is not shared between players, ie if a player has one spell to level 6, and another
+player learns that same spell, they will start at level 1 and work their way up. Now the spell system is almost finished.
+
+Now I actually have to implement the rest of the 6 spells then the spell system will be complete.

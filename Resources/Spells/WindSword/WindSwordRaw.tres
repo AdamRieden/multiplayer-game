@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="WindSwordRaw" load_steps=2 format=3 uid="uid://dc2y8baxerwmq"]
+
+[ext_resource type="Script" path="res://Resources/Spells/WindSword/WindSwordRaw.gd" id="1_jk20n"]
+
+[resource]
+script = ExtResource("1_jk20n")
+attack = 1.0

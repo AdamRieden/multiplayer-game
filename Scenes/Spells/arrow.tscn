@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://e1irq1prqe38"]
+
+[ext_resource type="Script" path="res://Scripts/Spell_related/Spell_scripts/arrow.gd" id="1_op6ky"]
+[ext_resource type="Texture2D" uid="uid://di37rtoclstau" path="res://Assets/Spells/SpartanHorn/arrow.png" id="2_4oynh"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6rauo"]
+size = Vector2(6, 11)
+
+[node name="Arrow" type="Area2D"]
+top_level = true
+scale = Vector2(0.5, 0.5)
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_op6ky")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_4oynh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10.5)
+shape = SubResource("RectangleShape2D_6rauo")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

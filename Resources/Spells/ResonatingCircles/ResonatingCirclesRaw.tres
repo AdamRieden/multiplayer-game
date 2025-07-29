@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="ResonatingCirclesRaw" load_steps=2 format=3 uid="uid://gh7l3hqygoqm"]
+
+[ext_resource type="Script" path="res://Resources/Spells/ResonatingCircles/ResonatingCirclesRaw.gd" id="1_ept2i"]
+
+[resource]
+script = ExtResource("1_ept2i")
+attack = 5.0
+speed = 20.0
