@@ -11,6 +11,7 @@ var Level
 var selected_spells := {}  # Dictionary of player_id -> {spell: String}
 var spellselection_dict := {}
 var spellobjects_dict := {}
+var spells_learned_dict := {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -21,6 +22,8 @@ func _ready():
 	for child in $PlayerSpawnNode.get_child_count():
 		spellselection_dict[$PlayerSpawnNode.get_child(child).player_id] = get_tree().get_nodes_in_group("SpellSelection")[child]
 		spellobjects_dict[$PlayerSpawnNode.get_child(child).player_id] = get_tree().get_nodes_in_group("SpellObjects")
+		
+		
 	
 @rpc("any_peer")
 func rpc_register_player():
@@ -59,8 +62,11 @@ func store_spell_choice(player_id: int, spell: String):
 		var path_for_players = "/root/Game/PlayerSpawnNode/"
 		var new_path_for_player = path_for_players + str(players)
 		var spellobjects_node = get_node(new_path_for_player + "/SpellObjects")
+		var spells_learned_node = get_node(new_path_for_player + "/CanvasLayer/SpellsLearned")
 		if get_node(new_path_for_player).leveled_up != true:
 			spellobjects_node.find_what_spell_to_spawn(spell)
+			#spells_learned_node.find_open_spellslot(spell)
+			#print(players)
 			get_node(new_path_for_player).leveled_up = true
 
 	if spell_confirmation_count == player_count:
@@ -70,7 +76,7 @@ func store_spell_choice(player_id: int, spell: String):
 			spellselection.rpc("rpc_reset_clicks")
 		for child in $PlayerSpawnNode.get_child_count():
 			$PlayerSpawnNode.get_child(child).leveled_up = false
-
+		#print(selected_spells)
 		start_game()
 		selected_spells.clear()
 		

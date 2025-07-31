@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PrototypeShieldBase" load_steps=3 format=3 uid="uid://7upbfkrobnrc"]
+
+[ext_resource type="Script" path="res://Resources/Spells/PrototypeShield/PrototypeShieldBase.gd" id="1_ru7ir"]
+[ext_resource type="Texture2D" uid="uid://y1llqito81qj" path="res://Assets/Spells/SpellIcons/4ShieldIcon.png" id="2_32qsp"]
+
+[resource]
+script = ExtResource("1_ru7ir")
+shield1cooldown = 2.0
+shield2cooldown = 3.0
+shield3cooldown = 4.0
+shield4cooldown = 5.0
+spell_name = "Prototype Shield"
+description = "A group of 4 shields, the closer to the user the stronger the shield is. Mainly a prototype of a vision the creator had for an invincible defense.
+"
+spell_texture = ExtResource("2_32qsp")

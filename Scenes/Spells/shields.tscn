@@ -1,0 +1,327 @@
+[gd_scene load_steps=22 format=3 uid="uid://2yh1y0qu81kx"]
+
+[ext_resource type="Script" path="res://Scripts/Spell_related/Spell_scripts/shields.gd" id="1_o8qkk"]
+[ext_resource type="Texture2D" uid="uid://d2pyaxsuys0je" path="res://Assets/Spells/PrototypeShield/4th Shield.png" id="2_o8va2"]
+[ext_resource type="Texture2D" uid="uid://dc4cw72ws3mw3" path="res://Assets/Spells/PrototypeShield/3rd shield.png" id="3_rtykp"]
+[ext_resource type="Texture2D" uid="uid://c8477khinhl5o" path="res://Assets/Spells/PrototypeShield/2nd shield.png" id="4_skrv2"]
+[ext_resource type="Texture2D" uid="uid://bjtnth4maqjm4" path="res://Assets/Spells/PrototypeShield/1st Shield.png" id="5_faqlq"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kiyjc"]
+radius = 12.0
+height = 56.0
+
+[sub_resource type="Animation" id="Animation_s3me7"]
+resource_name = "Shield4"
+length = 1.25
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Shield4Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1563, 0.3125, 0.4688, 0.625, 0.7813, 0.9375, 1.0938),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_ggsgj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Shield4Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_araok"]
+_data = {
+"RESET": SubResource("Animation_ggsgj"),
+"Shield4": SubResource("Animation_s3me7")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vsf1r"]
+radius = 9.0
+height = 42.0
+
+[sub_resource type="Animation" id="Animation_m8q1c"]
+resource_name = "Shield3"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Shield3Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_ynu83"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Shield3Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jw6va"]
+_data = {
+"RESET": SubResource("Animation_ynu83"),
+"Shield3": SubResource("Animation_m8q1c")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fnkux"]
+radius = 6.0
+
+[sub_resource type="Animation" id="Animation_hhknn"]
+resource_name = "Shield2"
+length = 0.75
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Shield2Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1875, 0.375, 0.5625),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_rnhk8"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Shield2Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q81b8"]
+_data = {
+"RESET": SubResource("Animation_rnhk8"),
+"Shield2": SubResource("Animation_hhknn")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8u1jh"]
+radius = 4.0
+height = 18.0
+
+[sub_resource type="Animation" id="Animation_giqar"]
+resource_name = "Shield1"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Shield1Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_msofh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Shield1Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_snwvj"]
+_data = {
+"RESET": SubResource("Animation_msofh"),
+"Shield1": SubResource("Animation_giqar")
+}
+
+[node name="Shields" type="Node2D"]
+z_index = 1
+script = ExtResource("1_o8qkk")
+
+[node name="Pivot4" type="Node2D" parent="."]
+
+[node name="Shield4" type="Node2D" parent="Pivot4"]
+position = Vector2(24, 0)
+rotation = 3.14159
+
+[node name="Shield4Area" type="Area2D" parent="Pivot4/Shield4"]
+collision_layer = 0
+collision_mask = 36
+
+[node name="Shield4Sprite" type="Sprite2D" parent="Pivot4/Shield4/Shield4Area"]
+unique_name_in_owner = true
+position = Vector2(11, 4)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_o8va2")
+hframes = 3
+vframes = 3
+
+[node name="Hurtbox4" type="CollisionShape2D" parent="Pivot4/Shield4/Shield4Area"]
+unique_name_in_owner = true
+shape = SubResource("CapsuleShape2D_kiyjc")
+
+[node name="Shield4Animation" type="AnimationPlayer" parent="Pivot4/Shield4/Shield4Area"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_araok")
+}
+autoplay = "Shield4"
+
+[node name="Shield4Timer" type="Timer" parent="Pivot4/Shield4/Shield4Area"]
+unique_name_in_owner = true
+wait_time = 5.0
+one_shot = true
+
+[node name="Pivot3" type="Node2D" parent="."]
+
+[node name="Shield3" type="Node2D" parent="Pivot3"]
+position = Vector2(29, -1)
+rotation = 3.14159
+
+[node name="Shield3Area" type="Area2D" parent="Pivot3/Shield3"]
+collision_layer = 0
+collision_mask = 36
+
+[node name="Shield3Sprite" type="Sprite2D" parent="Pivot3/Shield3/Shield3Area"]
+unique_name_in_owner = true
+position = Vector2(14, 3)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_rtykp")
+hframes = 2
+vframes = 3
+
+[node name="Hurtbox3" type="CollisionShape2D" parent="Pivot3/Shield3/Shield3Area"]
+unique_name_in_owner = true
+shape = SubResource("CapsuleShape2D_vsf1r")
+
+[node name="Shield3Animation" type="AnimationPlayer" parent="Pivot3/Shield3/Shield3Area"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_jw6va")
+}
+autoplay = "Shield3"
+
+[node name="Shield3Timer" type="Timer" parent="Pivot3/Shield3/Shield3Area"]
+unique_name_in_owner = true
+wait_time = 4.0
+one_shot = true
+
+[node name="Pivot2" type="Node2D" parent="."]
+
+[node name="Shield2" type="Node2D" parent="Pivot2"]
+position = Vector2(33, -1)
+rotation = 3.14159
+
+[node name="Shield2Area" type="Area2D" parent="Pivot2/Shield2"]
+collision_layer = 0
+collision_mask = 36
+
+[node name="Shield2Sprite" type="Sprite2D" parent="Pivot2/Shield2/Shield2Area"]
+unique_name_in_owner = true
+position = Vector2(18, 3)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_skrv2")
+hframes = 2
+vframes = 2
+
+[node name="Hurtbox2" type="CollisionShape2D" parent="Pivot2/Shield2/Shield2Area"]
+unique_name_in_owner = true
+position = Vector2(-8.74228e-08, -1)
+shape = SubResource("CapsuleShape2D_fnkux")
+
+[node name="Shield2Animation" type="AnimationPlayer" parent="Pivot2/Shield2/Shield2Area"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_q81b8")
+}
+autoplay = "Shield2"
+
+[node name="Shield2Timer" type="Timer" parent="Pivot2/Shield2/Shield2Area"]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[node name="Pivot1" type="Node2D" parent="."]
+
+[node name="Shield1" type="Node2D" parent="Pivot1"]
+position = Vector2(36, 0)
+rotation = 3.14159
+
+[node name="Shield1Area" type="Area2D" parent="Pivot1/Shield1"]
+collision_layer = 0
+collision_mask = 36
+
+[node name="Shield1Sprite" type="Sprite2D" parent="Pivot1/Shield1/Shield1Area"]
+unique_name_in_owner = true
+position = Vector2(20, 5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("5_faqlq")
+hframes = 2
+vframes = 2
+
+[node name="Hurtbox1" type="CollisionShape2D" parent="Pivot1/Shield1/Shield1Area"]
+unique_name_in_owner = true
+shape = SubResource("CapsuleShape2D_8u1jh")
+
+[node name="Shield1Animation" type="AnimationPlayer" parent="Pivot1/Shield1/Shield1Area"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_snwvj")
+}
+autoplay = "Shield1"
+
+[node name="Shield1Timer" type="Timer" parent="Pivot1/Shield1/Shield1Area"]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
+[connection signal="area_entered" from="Pivot4/Shield4/Shield4Area" to="." method="_on_shield_4_area_area_entered"]
+[connection signal="body_entered" from="Pivot4/Shield4/Shield4Area" to="." method="_on_shield_4_area_body_entered"]
+[connection signal="timeout" from="Pivot4/Shield4/Shield4Area/Shield4Timer" to="." method="_on_shield_4_timer_timeout"]
+[connection signal="area_entered" from="Pivot3/Shield3/Shield3Area" to="." method="_on_shield_3_area_area_entered"]
+[connection signal="body_entered" from="Pivot3/Shield3/Shield3Area" to="." method="_on_shield_3_area_body_entered"]
+[connection signal="timeout" from="Pivot3/Shield3/Shield3Area/Shield3Timer" to="." method="_on_shield_3_timer_timeout"]
+[connection signal="area_entered" from="Pivot2/Shield2/Shield2Area" to="." method="_on_shield_2_area_area_entered"]
+[connection signal="body_entered" from="Pivot2/Shield2/Shield2Area" to="." method="_on_shield_2_area_body_entered"]
+[connection signal="timeout" from="Pivot2/Shield2/Shield2Area/Shield2Timer" to="." method="_on_shield_2_timer_timeout"]
+[connection signal="area_entered" from="Pivot1/Shield1/Shield1Area" to="." method="_on_shield_1_area_area_entered"]
+[connection signal="body_entered" from="Pivot1/Shield1/Shield1Area" to="." method="_on_shield_1_area_body_entered"]
+[connection signal="timeout" from="Pivot1/Shield1/Shield1Area/Shield1Timer" to="." method="_on_shield_1_timer_timeout"]

@@ -4,16 +4,22 @@ extends Node2D
 
 @export var player_id : int
 
+var spells_learned
+
 var sword_spawn
 var sword_level_tracker = 0
 var circle_spawn
 var circle_level_tracker = 0
 var horn_spawn
 var horn_level_tracker = 0
-
+var shield_spawn
+var shield_level_tracker = 0
+var eye_spawn
+var eye_level_tracker = 0
 
 func _ready():
 	player_id = multiplayer.get_unique_id()
+	spells_learned = get_parent().get_node("CanvasLayer/SpellsLearned")
 
 func update_items_for_spells(spell_level: int):
 	var spell_item_list = self.get_child(spell_level).get_child(0)
@@ -21,16 +27,17 @@ func update_items_for_spells(spell_level: int):
 	if spell_item_list != null:
 		for item in spell_item_list.get_child_count():
 			spell_item_list.get_child(item).update()
-			
-			
+
+
 func find_what_spell_to_spawn(spell: String):
-	#print(spell, " ", selected_spell_level)
 	if spell == "Wind Sword":
 		spawn_sword(spell)
 	if spell == "Resonating Circles":
 		spawn_circles(spell)
 	if spell == "Spartan Horn":
 		spawn_horn(spell)
+	if spell == "Prototype Shield":
+		spawn_shield(spell)
 
 	
 func spawn_sword(spell: String):
@@ -38,13 +45,17 @@ func spawn_sword(spell: String):
 		var sword = spell_spawner.get_spawnable_scene(0)
 		sword_spawn = load(sword).instantiate()
 		
-		var sword_spell_res = load(SpellDictionary.spell_library[spell]["Base"])
+		var sword_spell_res_base = load(SpellDictionary.spell_library[spell]["Base"])
+		var sword_spell_res = sword_spell_res_base.duplicate(true)
+		
 		sword_spawn.SpellResource = sword_spell_res
 		sword_spawn.player = get_parent()
 		$Spell1.add_child(sword_spawn, true)
 		sword_level_tracker += 1
+
 		
-	elif sword_level_tracker == 1:
+		
+	elif sword_level_tracker >= 1:
 		var raw_path = SpellDictionary.spell_library[spell]["Raw"]
 		var base_res = load(raw_path)
 		var sword_spell_res = base_res.duplicate(true) # Deep copy
@@ -59,12 +70,15 @@ func spawn_circles(spell: String):
 		var circle = spell_spawner.get_spawnable_scene(1)
 		circle_spawn = load(circle).instantiate()
 		
-		var circle_spell_res = load(SpellDictionary.spell_library[spell]["Base"])
+		var circle_spell_res_base = load(SpellDictionary.spell_library[spell]["Base"])
+		var circle_spell_res = circle_spell_res_base.duplicate(true)
+		
 		circle_spawn.SpellResource = circle_spell_res
 		circle_spawn.player = get_parent()
 		
 		$Spell2.add_child(circle_spawn, true)
 		circle_level_tracker += 1
+	
 		
 	elif circle_level_tracker >= 1:
 		var raw_path = SpellDictionary.spell_library[spell]["Raw"]
@@ -76,28 +90,96 @@ func spawn_circles(spell: String):
 		circle_spawn.SpellResource = circle_spell_res
 		circle_level_tracker += 1
 
-
-
 func spawn_horn(spell: String):
 	if horn_level_tracker == 0:
 		var horn = spell_spawner.get_spawnable_scene(2)
 		horn_spawn = load(horn).instantiate()
 		
-		var horn_spell_res = load(SpellDictionary.spell_library[spell]["Base"])
+		var horn_spell_res_base = load(SpellDictionary.spell_library[spell]["Base"])
+		var horn_spell_res = horn_spell_res_base.duplicate(true)
+		
 		horn_spawn.SpellResource = horn_spell_res
 		horn_spawn.player = get_parent()
 		$Spell3.add_child(horn_spawn, true)
 		horn_level_tracker += 1
+
 		
-	elif horn_level_tracker == 1:
+	elif horn_level_tracker >= 1:
 		var raw_path = SpellDictionary.spell_library[spell]["Raw"]
 		var base_res = load(raw_path)
 		var horn_spell_res = base_res.duplicate(true) # Deep copy
 		
 		# Now can customize the duplicated resource so can't be referenced by any other player
-		horn_spell_res.attack = 4 + horn_level_tracker * 2
+		horn_spell_res.attack += (0.03 * horn_level_tracker)
+		horn_spell_res.cooldown -= (.75 * horn_level_tracker)
+		horn_spell_res.duration += (.2 * horn_level_tracker)
 		horn_spawn.SpellResource = horn_spell_res
 		horn_level_tracker += 1
 		
+
+func spawn_shield(spell: String):
+	if shield_level_tracker == 0:
+		var shield1 = spell_spawner.get_spawnable_scene(3)
+		shield_spawn = load(shield1).instantiate()
 		
+		var shield_spell_res_base = load(SpellDictionary.spell_library[spell]["First"])
+		var shield_spell_res = shield_spell_res_base.duplicate(true)
 		
+		shield_spawn.SpellResource = shield_spell_res
+		shield_spawn.player = get_parent()
+		$Spell4.add_child(shield_spawn, true)
+		shield_level_tracker += 1
+		
+
+		
+	elif shield_level_tracker == 1:
+		shield_spawn.destroy()
+		var shield2 = spell_spawner.get_spawnable_scene(4)
+		shield_spawn = load(shield2).instantiate()
+		
+		var shield_spell_res_base = load(SpellDictionary.spell_library[spell]["Second"])
+		var shield_spell_res = shield_spell_res_base.duplicate(true)
+		
+		shield_spawn.SpellResource = shield_spell_res
+		shield_spawn.player = get_parent()
+		$Spell4.add_child(shield_spawn, true)
+		shield_level_tracker += 1
+		
+	elif shield_level_tracker == 2:
+		shield_spawn.destroy()
+		var shield3 = spell_spawner.get_spawnable_scene(5)
+		shield_spawn = load(shield3).instantiate()
+		
+		var shield_spell_res_base = load(SpellDictionary.spell_library[spell]["Third"])
+		var shield_spell_res = shield_spell_res_base.duplicate(true)
+		
+		shield_spawn.SpellResource = shield_spell_res
+		shield_spawn.player = get_parent()
+		$Spell4.add_child(shield_spawn, true)
+		shield_level_tracker += 1
+		
+	elif shield_level_tracker == 3:
+		shield_spawn.destroy()
+		var shield4 = spell_spawner.get_spawnable_scene(6)
+		shield_spawn = load(shield4).instantiate()
+		
+		var shield_spell_res_base = load(SpellDictionary.spell_library[spell]["Fourth"])
+		var shield_spell_res = shield_spell_res_base.duplicate(true)
+		
+		shield_spawn.SpellResource = shield_spell_res
+		shield_spawn.player = get_parent()
+		$Spell4.add_child(shield_spawn, true)
+		shield_level_tracker += 1
+		
+	elif shield_level_tracker >= 4:
+		var shield_spell_res_base = load(SpellDictionary.spell_library[spell]["Raw"])
+		var shield_spell_res = shield_spell_res_base.duplicate(true)
+		
+		shield_spell_res.shield1cooldown -= (.2 * (shield_level_tracker - 3))
+		shield_spell_res.shield2cooldown -= (.2 * (shield_level_tracker - 3))
+		shield_spell_res.shield3cooldown -= (.2 * (shield_level_tracker - 3))
+		shield_spell_res.shield4cooldown -= (.2 * (shield_level_tracker - 3))
+		
+		shield_spawn.SpellResource = shield_spell_res
+		shield_level_tracker += 1
+

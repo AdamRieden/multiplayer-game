@@ -9,7 +9,6 @@ var Shockwave =  preload("res://Scenes/Spells/shockwave.tscn")
 func _process(delta):
 	%BluePivot.rotation_degrees += delta * PI * SpellResource.speed
 	%GreenPivot.rotation_degrees -= delta * PI * SpellResource.speed
-	print(SpellResource.speed)
 
 @rpc("authority", "call_local") 
 func shockwave():
@@ -25,5 +24,6 @@ func _on_shockwave_creator_green_area_entered(_area):
 	if multiplayer.is_server():
 		shockwave.rpc()
 
-func printyes():
-	print(SpellResource.speed)
+@rpc("authority", "call_local")
+func destroy():
+	queue_free()

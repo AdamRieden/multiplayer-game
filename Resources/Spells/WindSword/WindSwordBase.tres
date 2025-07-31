@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="WindSword" load_steps=3 format=3 uid="uid://dtsrrfdbae7aa"]
 
-[ext_resource type="Script" path="res://Resources/Spells/WindSword/WindSword.gd" id="1_jjomm"]
+[ext_resource type="Script" path="res://Resources/Spells/WindSword/WindSwordBase.gd" id="1_jjomm"]
 [ext_resource type="Texture2D" uid="uid://csbffw0jkh2tw" path="res://Assets/Spells/SpellIcons/Wind Sword Single.png" id="2_lt3nh"]
 
 [resource]

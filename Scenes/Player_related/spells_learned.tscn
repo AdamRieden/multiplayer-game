@@ -25,128 +25,144 @@ columns = 2
 metadata/_edit_use_anchors_ = true
 
 [node name="Spell1" type="TextureRect" parent="SpellSlotGrid"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(103, 103)
 layout_mode = 2
 
 [node name="BackgroundTexture" type="TextureRect" parent="SpellSlotGrid/Spell1"]
+show_behind_parent = true
 custom_minimum_size = Vector2(119, 119)
 layout_mode = 0
 anchor_right = 1.15534
 anchor_bottom = 1.15534
-offset_right = -79.0
-offset_bottom = -79.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = -8.00002
+offset_bottom = -8.00002
 texture = ExtResource("2_1lgsx")
 metadata/_edit_use_anchors_ = true
 
 [node name="Spell2" type="TextureRect" parent="SpellSlotGrid"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(103, 103)
 layout_mode = 2
 
 [node name="BackgroundTexture" type="TextureRect" parent="SpellSlotGrid/Spell2"]
+show_behind_parent = true
 custom_minimum_size = Vector2(119, 119)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.15534
 anchor_bottom = 1.15534
-offset_right = -79.0
-offset_bottom = -79.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = -8.00002
+offset_bottom = -8.00002
 texture = ExtResource("2_1lgsx")
 metadata/_edit_use_anchors_ = true
 
 [node name="Spell3" type="TextureRect" parent="SpellSlotGrid"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(103, 103)
 layout_mode = 2
 
 [node name="BackgroundTexture" type="TextureRect" parent="SpellSlotGrid/Spell3"]
+show_behind_parent = true
 custom_minimum_size = Vector2(119, 119)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.15534
 anchor_bottom = 1.15534
-offset_right = -79.0
-offset_bottom = -79.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = -8.00002
+offset_bottom = -8.00002
 texture = ExtResource("2_1lgsx")
 metadata/_edit_use_anchors_ = true
 
 [node name="Spell4" type="TextureRect" parent="SpellSlotGrid"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(103, 103)
 layout_mode = 2
 
 [node name="BackgroundTexture" type="TextureRect" parent="SpellSlotGrid/Spell4"]
+show_behind_parent = true
 custom_minimum_size = Vector2(119, 119)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.15534
 anchor_bottom = 1.15534
-offset_right = -79.0
-offset_bottom = -79.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = -8.00002
+offset_bottom = -8.00002
 texture = ExtResource("2_1lgsx")
 metadata/_edit_use_anchors_ = true
 
 [node name="Spell5" type="TextureRect" parent="SpellSlotGrid"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(103, 103)
 layout_mode = 2
 
 [node name="BackgroundTexture" type="TextureRect" parent="SpellSlotGrid/Spell5"]
+show_behind_parent = true
 custom_minimum_size = Vector2(119, 119)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.15534
 anchor_bottom = 1.15534
-offset_right = -79.0
-offset_bottom = -79.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = -8.00002
+offset_bottom = -8.00002
 texture = ExtResource("2_1lgsx")
 metadata/_edit_use_anchors_ = true
 
 [node name="Spell6" type="TextureRect" parent="SpellSlotGrid"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(103, 103)
 layout_mode = 2
 
 [node name="BackgroundTexture" type="TextureRect" parent="SpellSlotGrid/Spell6"]
+show_behind_parent = true
 custom_minimum_size = Vector2(119, 119)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.15534
 anchor_bottom = 1.15534
-offset_right = -79.0
-offset_bottom = -79.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = -8.00002
+offset_bottom = -8.00002
 texture = ExtResource("2_1lgsx")
 metadata/_edit_use_anchors_ = true
 
 [node name="Spell7" type="TextureRect" parent="SpellSlotGrid"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(103, 103)
 layout_mode = 2
 
 [node name="BackgroundTexture" type="TextureRect" parent="SpellSlotGrid/Spell7"]
+show_behind_parent = true
 custom_minimum_size = Vector2(119, 119)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.15534
 anchor_bottom = 1.15534
-offset_right = -79.0
-offset_bottom = -79.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = -8.00002
+offset_bottom = -8.00002
 texture = ExtResource("2_1lgsx")
 metadata/_edit_use_anchors_ = true
 
 [node name="Spell8" type="TextureRect" parent="SpellSlotGrid"]
-unique_name_in_owner = true
 custom_minimum_size = Vector2(103, 103)
 layout_mode = 2
 
 [node name="BackgroundTexture" type="TextureRect" parent="SpellSlotGrid/Spell8"]
+show_behind_parent = true
 custom_minimum_size = Vector2(119, 119)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.15534
 anchor_bottom = 1.15534
-offset_right = -79.0
-offset_bottom = -79.0
+offset_left = -8.0
+offset_top = -8.0
+offset_right = -8.00002
+offset_bottom = -8.00002
 texture = ExtResource("2_1lgsx")
 metadata/_edit_use_anchors_ = true

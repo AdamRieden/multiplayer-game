@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PrototypeShieldRaw" load_steps=2 format=3 uid="uid://brdave1r7kpsl"]
+
+[ext_resource type="Script" path="res://Resources/Spells/PrototypeShield/PrototypeShieldRaw.gd" id="1_al3fa"]
+
+[resource]
+script = ExtResource("1_al3fa")
+shield1cooldown = 2.0
+shield2cooldown = 3.0
+shield3cooldown = 4.0
+shield4cooldown = 5.0

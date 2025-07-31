@@ -68,7 +68,7 @@ func _physics_process(delta):
 		var target_player = closest_player
 		temp_pos = self.global_position
 		velocity = global_position.direction_to(target_player.global_position) * ChangingSpeed
-		#move_and_slide()
+		move_and_slide()
 		
 		if $Killzone.overlaps_body(closest_player) == true:
 			closest_player.take_damage(damage, delta)
@@ -76,18 +76,18 @@ func _physics_process(delta):
 		#if temp_pos == self.global_position:
 			#if status_effects.is_empty() == true:
 				#self.global_position += Vector2(30,30)
-	#
-	## checking all status effects on enemy
-	#for i in range(status_effects.size()):
-		#var effect = status_effects[i]
-		#effect.duration -= delta
-		#
-		#if effect.duration < 0:
-			#effect.remove(self)
-			#status_effects.remove_at(i)
-			#reset_effect()
-			#break
-		#
+	
+	# checking all status effects on enemy
+	for i in range(status_effects.size()):
+		var effect = status_effects[i]
+		effect.duration -= delta
+		
+		if effect.duration < 0:
+			effect.remove(self)
+			status_effects.remove_at(i)
+			reset_effect()
+			break
+		
 	$HealthBar.max_value = max_health
 
 
@@ -128,26 +128,26 @@ func make_exp_visible():
 	$SpellPage.visible = true
 
 
-#func apply_status_effect(effect):
-	## removes same effect happening again, just adds time to the original effect
-	#for i in range(status_effects.size()):
-		#if status_effects[i].get_class_name() == effect.get_class_name():
-			##if dot, then figured out in their own status effect class
-			#if effect.get_dot_bool() == false:
-				#status_effects[i].duration = effect.duration
-			#return
-#
-	#status_effects.append(effect)
-	#effect.apply(self)
-#
-	#
-#func reset_effect():
-	#for i in status_effects:
-		#i.apply(self)
-	#
-#func can_be_stunned():
-	#return true
-	#
+func apply_status_effect(effect):
+	# removes same effect happening again, just adds time to the original effect
+	for i in range(status_effects.size()):
+		if status_effects[i].get_class_name() == effect.get_class_name():
+			#if dot, then figured out in their own status effect class
+			if effect.get_dot_bool() == false:
+				status_effects[i].duration = effect.duration
+			return
+
+	status_effects.append(effect)
+	effect.apply(self)
+
+	
+func reset_effect():
+	for i in status_effects:
+		i.apply(self)
+	
+func can_be_stunned():
+	return true
+	
 #
 #func can_be_slowed():
 	#return true

@@ -12,6 +12,7 @@ var game
 var player
 var profile
 var spells_learned 
+var spell_objects
 
 var learned_spell_dims_with_book := {"position": Vector2(1429, 294), "columns": 2, "h_separation": 32, "v_separation": 32}
 var learned_spell_dims_idle := {"position": Vector2(10, 260), "columns": 2, "h_separation": 1688, "v_separation": 20}
@@ -20,12 +21,12 @@ func _ready():
 	player = get_parent().get_parent()
 	game = get_tree().get_nodes_in_group("Game")[0]
 #	profile = get_tree().get_nodes_in_group("Profile")[0]
-	spells_learned = player.get_node("CanvasLayer/SpellsLearned")
+	spells_learned = get_parent().get_node("SpellsLearned")
+	spell_objects = get_parent().get_parent().get_node("SpellObjects")
 	move_learned_spells_next_to_edge()
 	rpc_hide_spell_ui()
 	load_firstlevel_spells()
 	spell_texture_box = self.get_node("SpellRect") as TextureRect
-	player_id = multiplayer.get_unique_id()
 
 
 @rpc("any_peer", "call_local")
@@ -36,6 +37,8 @@ func rpc_show_spell_ui():
 @rpc("any_peer", "call_local")
 func rpc_hide_spell_ui():
 	self.visible = false
+	move_learned_spells_next_to_edge()
+	#profile._hide()
 	
 	
 @rpc("any_peer", "call_local")
@@ -54,11 +57,7 @@ func move_learned_spells_next_to_book():
 	spells_learned.get_child(0).columns = learned_spell_dims_with_book["columns"]
 	spells_learned.get_child(0).add_theme_constant_override("h_separation", learned_spell_dims_with_book["h_separation"])
 	spells_learned.get_child(0).add_theme_constant_override("v_separation", learned_spell_dims_with_book["v_separation"]) 
-	
-func spell_chosen():
-	self.visible = false
-	move_learned_spells_next_to_edge()
-	#profile._hide()
+
 	
 func move_learned_spells_next_to_edge():
 	spells_learned.position = learned_spell_dims_idle["position"]
@@ -81,8 +80,8 @@ func connect_spell_buttons(i: int):#, spell_resource: Resource):
 		%Spell2.pressed.connect(spell2.bind(load(SpellDictionary.spell_library["Resonating Circles"]["Base"])))
 	if i == 2:
 		%Spell3.pressed.connect(spell3.bind(load(SpellDictionary.spell_library["Spartan Horn"]["Base"])))
-	#if i == 3:
-		#%Spell4.pressed.connect(spell4.bind(spell_resource))
+	if i == 3:
+		%Spell4.pressed.connect(spell4.bind(load(SpellDictionary.spell_library["Prototype Shield"]["Base"])))
 	#if i == 4:
 		#%Spell5.pressed.connect(spell5.bind(spell_resource))
 	#if i == 5:
@@ -141,7 +140,7 @@ func spell3(spell_resource: Resource):
 
 
 func spell4(spell_resource: Resource):
-	one_click_spell("Spell4", spell_resource)
+	one_click_spell("Prototype Shield", spell_resource)
 	load_spell_content_on_book(spell_resource)
 
 
@@ -171,6 +170,8 @@ func _on_confirm_pressed():
 	if spell_click_monitor[1] != null:
 		rpc("rpc_spell_selected", selected_spell)
 		disableenable_buttons(true)
+		spells_learned.find_open_spellslot(selected_spell)
+		
 	else:
 		print("No spell selected")
 	
@@ -183,6 +184,9 @@ func rpc_spell_selected(selected_spell_string: String):
 	else:
 		var sender_id = multiplayer.get_remote_sender_id()
 		game.store_spell_choice(sender_id, selected_spell_string)
+
+		#print(sender_id, " ", spells_learned.player_id)
+		#spells_learned.find_open_spellslot(selected_spell_string, sender_id)
 
 # Tracks multiple variables of the selected spell resource for uses in other functions
 # as well as tracks the different clicks of the spells

@@ -6,7 +6,7 @@
 script = ExtResource("1_6nk6a")
 
 [node name="SpellSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Scenes/Spells/Wind_sword.tscn", "res://Scenes/Spells/resonating_circles.tscn", "res://Scenes/Spells/spartan_horn.tscn")
+_spawnable_scenes = PackedStringArray("res://Scenes/Spells/Wind_sword.tscn", "res://Scenes/Spells/resonating_circles.tscn", "res://Scenes/Spells/spartan_horn.tscn", "res://Scenes/Spells/first_shield.tscn", "res://Scenes/Spells/second_shield.tscn", "res://Scenes/Spells/third_shield.tscn", "res://Scenes/Spells/shields.tscn")
 spawn_path = NodePath("..")
 
 [node name="Spell1" type="Node2D" parent="."]

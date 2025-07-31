@@ -22,3 +22,17 @@ all spells scale infinitely each time they are choosen. This leveling system is 
 player learns that same spell, they will start at level 1 and work their way up. Now the spell system is almost finished.
 
 Now I actually have to implement the rest of the 6 spells then the spell system will be complete.
+
+
+7/30/2025
+I have updated the horn arrow trajectory to vary slightly left or right, so not all the arrows are falling straight down. I have also varied the speed of the arrows as well.
+I have added the shield spell, that each level, up to level 4, a new shield gets added to the player and is always facing the direction the player is moving in. 
+I am now trying to incorporate the learned spells on the sides of the screen to help show what spells they have already learned. After getting this to work,
+I will finish adding all the spells and then I think the spell system will be complete. 
+
+7/31/2025 
+Finished the learned spells on the side and forgot to push the last update. The learned spells list only adds the new spells learned, so no duplicates.
+Also carried over the status effects I used from my single player game, which had no issues at all which was nice as I wasn't sure if multiplayer would affect
+the stun property of the shield on enemies. 
+
+Now I will be working towards adding the 4 final spells and move on to adding the chest/inventory system.

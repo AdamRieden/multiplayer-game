@@ -1,0 +1,167 @@
+[gd_scene load_steps=12 format=3 uid="uid://7dfylnjymvxl"]
+
+[ext_resource type="Texture2D" uid="uid://c8477khinhl5o" path="res://Assets/Spells/PrototypeShield/2nd shield.png" id="1_gmoch"]
+[ext_resource type="Script" path="res://Scripts/Spell_related/Spell_scripts/second_shield.gd" id="1_i20cl"]
+[ext_resource type="Texture2D" uid="uid://bjtnth4maqjm4" path="res://Assets/Spells/PrototypeShield/1st Shield.png" id="2_fgpwb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_vebal"]
+radius = 6.0
+
+[sub_resource type="Animation" id="Animation_abhbc"]
+resource_name = "Shield2"
+length = 0.75
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Shield2Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1875, 0.375, 0.5625),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_7s3mk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Shield2Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_k762v"]
+_data = {
+"RESET": SubResource("Animation_7s3mk"),
+"Shield2": SubResource("Animation_abhbc")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ao310"]
+radius = 4.0
+height = 18.0
+
+[sub_resource type="Animation" id="Animation_ihh71"]
+resource_name = "Shield1"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Shield1Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="Animation" id="Animation_gqc2v"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("%Shield1Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_toqej"]
+_data = {
+"RESET": SubResource("Animation_gqc2v"),
+"Shield1": SubResource("Animation_ihh71")
+}
+
+[node name="SecondShield" type="Node2D"]
+script = ExtResource("1_i20cl")
+
+[node name="Pivot2" type="Node2D" parent="."]
+
+[node name="Shield2" type="Node2D" parent="Pivot2"]
+position = Vector2(33, -1)
+rotation = 3.14159
+
+[node name="Shield2Area" type="Area2D" parent="Pivot2/Shield2"]
+collision_layer = 0
+collision_mask = 36
+
+[node name="Shield2Sprite" type="Sprite2D" parent="Pivot2/Shield2/Shield2Area"]
+unique_name_in_owner = true
+position = Vector2(18, 3)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_gmoch")
+hframes = 2
+vframes = 2
+
+[node name="Hurtbox2" type="CollisionShape2D" parent="Pivot2/Shield2/Shield2Area"]
+unique_name_in_owner = true
+position = Vector2(-8.74228e-08, -1)
+shape = SubResource("CapsuleShape2D_vebal")
+
+[node name="Shield2Animation" type="AnimationPlayer" parent="Pivot2/Shield2/Shield2Area"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_k762v")
+}
+autoplay = "Shield2"
+
+[node name="Shield2Timer" type="Timer" parent="Pivot2/Shield2/Shield2Area"]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
+
+[node name="Pivot1" type="Node2D" parent="."]
+
+[node name="Shield1" type="Node2D" parent="Pivot1"]
+position = Vector2(36, 0)
+rotation = 3.14159
+
+[node name="Shield1Area" type="Area2D" parent="Pivot1/Shield1"]
+collision_layer = 0
+collision_mask = 36
+
+[node name="Shield1Sprite" type="Sprite2D" parent="Pivot1/Shield1/Shield1Area"]
+unique_name_in_owner = true
+position = Vector2(20, 5)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_fgpwb")
+hframes = 2
+vframes = 2
+
+[node name="Hurtbox1" type="CollisionShape2D" parent="Pivot1/Shield1/Shield1Area"]
+unique_name_in_owner = true
+shape = SubResource("CapsuleShape2D_ao310")
+
+[node name="Shield1Animation" type="AnimationPlayer" parent="Pivot1/Shield1/Shield1Area"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_toqej")
+}
+autoplay = "Shield1"
+
+[node name="Shield1Timer" type="Timer" parent="Pivot1/Shield1/Shield1Area"]
+unique_name_in_owner = true
+wait_time = 2.0
+one_shot = true
+
+[connection signal="area_entered" from="Pivot2/Shield2/Shield2Area" to="." method="_on_shield_2_area_area_entered"]
+[connection signal="body_entered" from="Pivot2/Shield2/Shield2Area" to="." method="_on_shield_2_area_body_entered"]
+[connection signal="timeout" from="Pivot2/Shield2/Shield2Area/Shield2Timer" to="." method="_on_shield_2_timer_timeout"]
+[connection signal="area_entered" from="Pivot1/Shield1/Shield1Area" to="." method="_on_shield_1_area_area_entered"]
+[connection signal="body_entered" from="Pivot1/Shield1/Shield1Area" to="." method="_on_shield_1_area_body_entered"]
+[connection signal="timeout" from="Pivot1/Shield1/Shield1Area/Shield1Timer" to="." method="_on_shield_1_timer_timeout"]

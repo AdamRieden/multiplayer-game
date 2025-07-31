@@ -48,20 +48,5 @@ func spawn_arrow():
 	new_arrow.global_position = spawn_location.global_position
 	spawn_location.call_deferred("add_child", new_arrow, true)
 	
-## takes the level from spell resource and makes adjustements to spell
-#func calibrate_level():
-	#if SpellResource.spell_level == 1:
-		#cooldown = 10
-		#spawnarrowtime = 2
-		#attack = SpellResource.attack
-		#
-	#elif SpellResource.spell_level == 2:
-		#cooldown = 8
-		#spawnarrowtime = 2.4
-		#attack = SpellResource.attack
-		#
-	#elif SpellResource.spell_level == 3:
-		#cooldown = 7
-		#spawnarrowtime = 2.7
-		#attack = SpellResource.attack
+
 

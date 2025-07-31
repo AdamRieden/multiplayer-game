@@ -9,6 +9,7 @@ extends CharacterBody2D
 		%InputSynchronizer.set_multiplayer_authority(id)
 
 @export var leveled_up = false
+@export var current_angle = 0
 #MUST CHANGE THE VALUES IN THE PROGRESS BAR INSPECTOR TO ACTUALLY SEE CHANGE IN HEALTH MAX AND HEALTH VALUE
 var max_stat = 1#4
 var stat_value = 1
@@ -17,6 +18,7 @@ var player_stats = {"attack":5, "defense": 4, "health": 50.0, "max_health": 50.0
 var health_regen = .2 / player_stats["max_health"]
 
 var input_direction
+
 var game
 
 	
@@ -31,6 +33,7 @@ func _ready():
 	game.rpc("rpc_register_player")
 	$SpellObjects.player_id = player_id
 	$CanvasLayer/SpellSelection.player_id = player_id
+	$CanvasLayer/SpellsLearned.player_id = player_id
 	%HealthBar.max_value = player_stats["max_health"]
 	%HealthBar.value = player_stats["health"]
 	#%StatLevelUpBar.max_value = max_stat
@@ -40,6 +43,7 @@ func _ready():
 # get the input direction and handle the movement/deceleration.
 func get_input():
 	input_direction = %InputSynchronizer.input_direction
+	current_angle = rad_to_deg(atan2(input_direction.y, input_direction.x))
 	velocity = input_direction * SPEED
 
 	
