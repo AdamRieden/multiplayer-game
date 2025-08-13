@@ -1,3 +1,7 @@
+## Video Demo
+
+[![Watch the demo](Assets/GameDemo-ezgif.com-optimize (1).gif)](Assets/GameDemo.mp4)
+
 This is a multiplayer rouge-like game I adapted from my single player game. 
 I am re-using all the code and assets, but also refactoring the code to be more streamlined and make more sense, 
 especially now that I have to deal with the multiplayer aspects.
